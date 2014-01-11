@@ -47,6 +47,9 @@ try { if ( typeof(Campfire) != "undefined" ) {
 
   Campfire.FluidGrowler = Class.create({
     initialize: function(chat) {
+      // avoid init on rooms that are not chat rooms
+      if (! $('todays_transcript')) return;
+
       this.chat = chat;
       this.pattern = new RegExp("^" + RegExp.escape(this.chat.username));
 
