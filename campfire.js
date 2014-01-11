@@ -24,15 +24,16 @@ try { if ( typeof(Campfire) != "undefined" ) {
   function getCookie(name) {
     return $A(document.cookie.split(";")).map(function(c) {
       var parts = c.split("=");
-      if (parts[0].toString().strip()==name)
+      if (parts[0].toString().strip() == name)
         return unescape(parts[1]);
       else
         return undefined;
     }).compact().first();
-  }  function getCookie(name) {
+  }
+  function getCookie(name) {
     return $A(document.cookie.split(";")).map(function(c) {
       var parts = c.split("=");
-      if (parts[0].toString().strip()==name)
+      if (parts[0].toString().strip() == name)
         return unescape(parts[1]);
       else
         return undefined;
@@ -73,7 +74,7 @@ try { if ( typeof(Campfire) != "undefined" ) {
             var bodyElement = message.bodyElement();
             window.fluid.showGrowlNotification({
               title: document.title,
-              description: "(" + message.author() + ") " + body,
+              description: message.author() + ": " + body,
               priority: 1,
               sticky: this.shouldStick(body),
               onclick: function() {
@@ -110,16 +111,16 @@ try { if ( typeof(Campfire) != "undefined" ) {
     showConfigForm: function() {
       if ($('growl_config_div')) $('growl_config_div').remove();
       new Insertion.After('participants', "\
-      <div id='growl_config_div'>\
-      <h3>Growl:</h3>\
-      <div id='debug'></div>\
-      <form id='growl_form' style='font-size: 10px'>\
-        <div><input type='radio' name='growl_when' id='growl_always' value='always' /> Always</div>\
-        <div><input type='radio' name='growl_when' id='growl_always_with_stick' value='always_with_stick' /> Always, but stick on regex</div>\
-        <div><input type='radio' name='growl_when' id='growl_only_on_regex' value='only_on_regex' /> Only on regex</div>\
-        <div id='growl_trigger_div'>Regex: /\\b<input type='text' name='trigger' id='growl_trigger'/>\\b/i</div>\
-      </form>\
-      </div>\
+        <div id='growl_config_div'>\
+        <h3>Growl:</h3>\
+        <div id='debug'></div>\
+        <form id='growl_form' style='font-size: 10px'>\
+          <div><input type='radio' name='growl_when' id='growl_always' value='always' /> Always</div>\
+          <div><input type='radio' name='growl_when' id='growl_always_with_stick' value='always_with_stick' /> Always, but stick on regex</div>\
+          <div><input type='radio' name='growl_when' id='growl_only_on_regex' value='only_on_regex' /> Only on regex</div>\
+          <div id='growl_trigger_div'>Regex: <input type='text' name='trigger' id='growl_trigger' /></div>\
+        </form>\
+        </div>\
       ");
       var that = this;
 
